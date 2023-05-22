@@ -5,6 +5,7 @@ import React, { Suspense, useMemo, useRef, useState } from 'react'
 import { useIntersect, ScrollControls, Scroll } from '@react-three/drei'
 import { useScroll } from 'react-spring'
 import * as THREE from 'three'
+import { useWindowWidth, } from '@react-hook/window-size'
 
 // components
 import CovidModel from '../components/Covid'
@@ -55,6 +56,8 @@ function generateRandomFloatInRange(min: number, max: number) {
     return num;
 }
 const HomePage = () => {
+    const width = useWindowWidth()
+    const isMobile = width < 768
 
     const getNames = (num: number)=> {
         let iNames = []
@@ -68,6 +71,7 @@ const HomePage = () => {
 
     const iNames = useMemo(()=> getNames(80), [])
 
+    console.log("isMobile ", isMobile)
     return (
         <div className='page'>
             
@@ -75,164 +79,166 @@ const HomePage = () => {
             <AppbarComponent />
 
             {/* 3d experience */}
-            <Canvas shadows style={{ height: '100vh' }}>
-                <ambientLight color={'pink'} />
+            <Suspense fallback={<Loader />}>
+                <Canvas shadows style={{ height: '100vh' }}>
+                    <ambientLight color={'pink'} />
 
-                {/* <hemisphereLight color={'black'} /> */}
-                {/* <OrbitControls /> */}
+                    {/* <hemisphereLight color={'black'} /> */}
+                    {/* <OrbitControls /> */}
 
-                <color args={['#F2D0D0']} attach='background' />
+                    <color args={['#F2D0D0']} attach='background' />
 
-                
-                <Suspense fallback={<Loader />}>
-                    <ScrollControls pages={8.2}>
+                    
+                    <Suspense fallback={null}>
+                        <ScrollControls pages={8.2}>
 
-                        <Scroll>
+                            <Scroll>
 
-                            {/* covid came */}
-                            <Section position={-4}>
-                                <group position-z={-3} position-y={5}>
-                                    <Text
-                                        font="/fonts/Rubik Light_Regular.json"
-                                        fontSize={8}
-                                    >
-                                        An Era
-                                        <meshBasicMaterial color="#F2ACB9" />
-                                    </Text>
-                                </group>
-                                <Float floatIntensity={.5}>
-                                    <CovidModel />
-                                </Float>
-                            </Section>
+                                {/* covid came */}
+                                <Section position={-4}>
+                                    <group position-z={-3} position-y={isMobile ? 6 : 5}>
+                                        <Text
+                                            font="/fonts/Rubik Light_Regular.json"
+                                            fontSize={isMobile ? 2.5 : 8}
+                                        >
+                                            An Era
+                                            <meshBasicMaterial color="#F2ACB9" />
+                                        </Text>
+                                    </group>
+                                    <Float floatIntensity={.5}>
+                                        <CovidModel />
+                                    </Float>
+                                </Section>
 
-                            {/* first responders */}
-                            <Section position={-15}>
-                                <group position-z={-3} position-y={3}>
-                                    <Text
-                                        font="/fonts/Rubik Light_Regular.json"
-                                        fontSize={8}
-                                    >
-                                        Hope
-                                        <meshBasicMaterial color="#BBE8F2" />
-                                        <meshBasicMaterial color="#F2ACB9" />
-                                    </Text>
-                                </group>
-                                <MaskModel />
-                            </Section>
+                                {/* first responders */}
+                                <Section position={-15}>
+                                    <group position-z={-3} position-y={3}>
+                                        <Text
+                                            font="/fonts/Rubik Light_Regular.json"
+                                            fontSize={isMobile ? 3.2 : 8}
+                                        >
+                                            Hope
+                                            <meshBasicMaterial color="#BBE8F2" />
+                                            <meshBasicMaterial color="#F2ACB9" />
+                                        </Text>
+                                    </group>
+                                    <MaskModel />
+                                </Section>
 
-                            {/* gift */}
-                            <Section position={-24}>
-                                <group position-z={-6} position-y={-2}>
-                                    <Text
-                                        font="/fonts/Rubik Light_Regular.json"
-                                        fontSize={11}
-                                    >
-                                        A Gift
-                                        <meshBasicMaterial color="#EBF2B3" />
-                                        <meshBasicMaterial color="#F2ACB9" />
-                                    </Text>
-                                </group>
-                                <Float floatIntensity={.5}>
-                                    <HeartModel />
-                                </Float>
-
-                                {/* left */}
-                                <group position={[ -4, -1, -2 ]}>
-                                    <GiftModel />
-                                </group>
-                                <group position={[ -6, -1, -3 ]}>
-                                    <GiftModel />
-                                </group>
-                                <group position={[ -8, -1, -4 ]}>
-                                    <GiftModel />
-                                </group>
-
-                                {/* right */}
-                                <group position={[ 4, -1, -2 ]}>
-                                    <GiftModel />
-                                </group>
-                                <group position={[ 6, -1, -3 ]}>
-                                    <GiftModel />
-                                </group>
-                                <group position={[ 8, -1, -4 ]}>
-                                    <GiftModel />
-                                </group>
-                            </Section>
-
-                            {/* tribute */}
-                            <Section position={-40}>
-                                <group position-z={-3} position-y={1}>
-                                    <Text
-                                        font="/fonts/Rubik Light_Regular.json"
-                                        fontSize={8}
-                                    >
-                                        Tribute
-                                        <meshBasicMaterial color="pink" />
-                                        <meshBasicMaterial color="#F2ACB9" />
-                                    </Text>
-                                </group>
-                                <group position-z={-3} scale={2}>
-                                    <Float floatIntensity={1}>
+                                {/* gift */}
+                                <Section position={-24}>
+                                    <group position-z={-6} position-y={isMobile ? 0 : -2}>
+                                        <Text
+                                            font="/fonts/Rubik Light_Regular.json"
+                                            fontSize={isMobile ? 4 : 11}
+                                        >
+                                            A Gift
+                                            <meshBasicMaterial color="#EBF2B3" />
+                                            <meshBasicMaterial color="#F2ACB9" />
+                                        </Text>
+                                    </group>
+                                    <Float floatIntensity={.5}>
                                         <HeartModel />
                                     </Float>
-                                </group>
-                                {
-                                    iNames.map((name, index)=> {
 
-                                        return (
-                                            <Float key={index} floatIntensity={.5}>
-                                                <group
-                                                    position={[
-                                                        // Math.floor(Math.random() * 13) * Math.random() > .5 ? -1 : 1,
-                                                        generateRandomFloatInRange(-11, 10),
-                                                        generateRandomFloatInRange(5, -15),
-                                                        // Math.floor(Math.random() * 13) - 38,
-                                                        generateRandomFloatInRange(1, -5),
-                                                    ]}
-                                                >
-                                                    <Text
-                                                        font="/fonts/Rubik Light_Regular.json"
-                                                        fontSize={.4}
+                                    {/* left */}
+                                    <group position={[ -4, -1, -2 ]}>
+                                        <GiftModel />
+                                    </group>
+                                    <group position={[ -6, -1, -3 ]}>
+                                        <GiftModel />
+                                    </group>
+                                    <group position={[ -8, -1, -4 ]}>
+                                        <GiftModel />
+                                    </group>
+
+                                    {/* right */}
+                                    <group position={[ 4, -1, -2 ]}>
+                                        <GiftModel />
+                                    </group>
+                                    <group position={[ 6, -1, -3 ]}>
+                                        <GiftModel />
+                                    </group>
+                                    <group position={[ 8, -1, -4 ]}>
+                                        <GiftModel />
+                                    </group>
+                                </Section>
+
+                                {/* tribute */}
+                                <Section position={-40}>
+                                    <group position-z={-4} position-y={isMobile ? 3 : 1}>
+                                        <Text
+                                            font="/fonts/Rubik Light_Regular.json"
+                                            fontSize={isMobile ? 2.6 : 8}
+                                        >
+                                            Tribute
+                                            <meshBasicMaterial color="pink" />
+                                            <meshBasicMaterial color="#F2ACB9" />
+                                        </Text>
+                                    </group>
+                                    <group position-z={-3} scale={isMobile ? 1.2 : 2}>
+                                        <Float floatIntensity={1}>
+                                            <HeartModel />
+                                        </Float>
+                                    </group>
+                                    {
+                                        iNames.map((name, index)=> {
+
+                                            return (
+                                                <Float key={index} floatIntensity={.5}>
+                                                    <group
+                                                        position={[
+                                                            // Math.floor(Math.random() * 13) * Math.random() > .5 ? -1 : 1,
+                                                            generateRandomFloatInRange(-11, 10),
+                                                            generateRandomFloatInRange(5, -15),
+                                                            // Math.floor(Math.random() * 13) - 38,
+                                                            generateRandomFloatInRange(1, -5),
+                                                        ]}
                                                     >
-                                                        {name}.
-                                                        <meshBasicMaterial
-                                                            color={
-                                                                Object.keys(THREE.Color.NAMES)[Math.floor(generateRandomFloatInRange(0, Object.keys(THREE.Color.NAMES).length))]
-                                                            }
-                                                        />
-                                                    </Text>
-                                                </group>
-                                            </Float>
-                                        )
-                                    })
-                                }
-                            </Section>
+                                                        <Text
+                                                            font="/fonts/Rubik Light_Regular.json"
+                                                            fontSize={.4}
+                                                        >
+                                                            {name}.
+                                                            <meshBasicMaterial
+                                                                color={
+                                                                    Object.keys(THREE.Color.NAMES)[Math.floor(generateRandomFloatInRange(0, Object.keys(THREE.Color.NAMES).length))]
+                                                                }
+                                                            />
+                                                        </Text>
+                                                    </group>
+                                                </Float>
+                                            )
+                                        })
+                                    }
+                                </Section>
 
-                            {/* to survivors */}
-                            <Section position={-60}>
-                                <group position-z={-3} position-y={5}>
-                                    <Text
-                                        font="/fonts/Rubik Light_Regular.json"
-                                        fontSize={6}
-                                    >
-                                        Gratitude
-                                        <meshBasicMaterial color="pink" />
-                                        <meshBasicMaterial color="#F2ACB9" />
-                                    </Text>
-                                </group>
-                                <Float floatIntensity={1.5}>
-                                    <EarthModel />
-                                </Float>
-                            </Section>
+                                {/* to survivors */}
+                                <Section position={-60}>
+                                    <group position-z={-3} position-y={isMobile ? 7 : 5}>
+                                        <Text
+                                            font="/fonts/Rubik Light_Regular.json"
+                                            fontSize={isMobile ? 2 : 6}
+                                        >
+                                            Gratitude
+                                            <meshBasicMaterial color="pink" />
+                                            <meshBasicMaterial color="#F2ACB9" />
+                                        </Text>
+                                    </group>
+                                    <Float floatIntensity={1.5}>
+                                        <EarthModel />
+                                    </Float>
+                                </Section>
 
-                        </Scroll>
+                            </Scroll>
 
-                        {/* html scrolls */}
-                        <Scrolls />
+                            {/* html scrolls */}
+                            <Scrolls />
 
-                    </ScrollControls>
-                </Suspense>
-            </Canvas>
+                        </ScrollControls>
+                    </Suspense>
+                </Canvas>
+            </Suspense>
         </div>
     )
 }
