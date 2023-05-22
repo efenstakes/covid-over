@@ -1,19 +1,19 @@
 import React from 'react'
 
-import './component.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 
-type AppbarComponentProps = {
+// styles
+import './component.scss'
 
-}
+
 const AppbarComponent = () => {
     
     return (
         <div className='appbar'>
 
             <div className='appbar__logo_container'>
-                <Image
+                <img
                     src={'/images/logo.jpg'}
                     alt='Logo'
                     className='appbar__logo_image'
@@ -26,7 +26,7 @@ const AppbarComponent = () => {
             </div>
             
             <p className='appbar__text appbar__bytext'>
-                <Link href={'https://felixportfolio-ea3f1.web.app'} target='_blank'>
+                <Link href={'https://felixportfolio-ea3f1.web.app'} target='_blank' type='' style={{ textDecoration: 'none' }}>
                     <small>
                         By Felix (Efen)
                     </small>
