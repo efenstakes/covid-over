@@ -1,9 +1,10 @@
 "use client"
-import { Box, Environment, Float, Html, OrbitControls, Text3D, Text } from '@react-three/drei'
+import { Float, Html, OrbitControls, Text3D, Text } from '@react-three/drei'
 import { Canvas, useThree } from '@react-three/fiber'
-import React, { useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { useIntersect, ScrollControls, Scroll } from '@react-three/drei'
 import { useScroll } from 'react-spring'
+import * as THREE from 'three'
 
 // components
 import CovidModel from '../components/Covid'
@@ -11,6 +12,7 @@ import MaskModel from '../components/Mask'
 import HeartModel from '../components/Heart'
 import GiftModel from '../components/Gift'
 import EarthModel from '../components/Earth'
+import AppbarComponent from '../components/appbar/component'
 
 
 // list of names
@@ -54,8 +56,25 @@ function generateRandomFloatInRange(min: number, max: number) {
 }
 const HomePage = () => {
 
+    const getNames = (num: number)=> {
+        let iNames = []
+
+        for (let currentCount = 0; currentCount < num; currentCount++) {
+            iNames.push(names[generateRandomFloatInRange(0, names.length)])
+        }
+
+        return iNames
+    }
+
+    const iNames = useMemo(()=> getNames(80), [])
+
     return (
         <div className='page'>
+            
+            {/* appbar */}
+            <AppbarComponent />
+
+            {/* 3d experience */}
             <Canvas shadows style={{ height: '100vh' }}>
                 <ambientLight color={'pink'} />
 
@@ -70,7 +89,7 @@ const HomePage = () => {
                     <Scroll>
 
                         {/* covid came */}
-                        <Section position={-2}>
+                        <Section position={-4}>
                             <group position-z={-3} position-y={5}>
                                 <Text
                                     font="/fonts/Rubik Light_Regular.json"
@@ -140,7 +159,7 @@ const HomePage = () => {
                         </Section>
 
                         {/* tribute */}
-                        <Section position={-38}>
+                        <Section position={-40}>
                             <group position-z={-3} position-y={1}>
                                 <Text
                                     font="/fonts/Rubik Light_Regular.json"
@@ -157,7 +176,7 @@ const HomePage = () => {
                                 </Float>
                             </group>
                             {
-                                names.map((name)=> {
+                                iNames.map((name)=> {
 
                                     return (
                                         <Float floatIntensity={.5}>
@@ -170,15 +189,17 @@ const HomePage = () => {
                                                     generateRandomFloatInRange(1, -5),
                                                 ]}
                                             >
-                                                <Text3D
+                                                <Text
                                                     font="/fonts/Rubik Light_Regular.json"
-                                                    bevelEnabled
-                                                    size={ .2 }
-                                                    bevelThickness={0}
+                                                    fontSize={.4}
                                                 >
                                                     {name}.
-                                                    <meshBasicMaterial color="#368ABF" />
-                                                </Text3D>
+                                                    <meshBasicMaterial
+                                                        color={
+                                                            Object.keys(THREE.Color.NAMES)[Math.floor(generateRandomFloatInRange(0, Object.keys(THREE.Color.NAMES).length))]
+                                                        }
+                                                    />
+                                                </Text>
                                             </group>
                                         </Float>
                                     )
@@ -265,7 +286,7 @@ const Scrolls = ()=> {
                     // backgroundColor: 'lightblue',
                 }}
             >
-                <div className='threed_section_content_container threed_section_content_container__over'>
+                <div className='threed_section_content_container threed_section_content_container__gift'>
                     <h1 className='threed_section_content_container__title'> May 2023 </h1>
                     <p className='threed_section_content_container__text'>
                         We got our gift, WHO announced that COVID was not a pandemic anymore. Now we can breath.

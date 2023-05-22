@@ -1,6 +1,7 @@
 
 
 .page {
+    position: relative;
     min-height: 100vh;
 }
 
@@ -25,16 +26,22 @@
     padding: 1rem;
     border-radius: .5rem;
 
+    min-height: 120px;
+
     background-color: rgba(lightgreen, .4);
     backdrop-filter: blur(5px);
 }
 
 .threed_section_content_container_start {
-    background-color: rgba(tomato, .4);
+    background-color: rgba(white, .2);
 }
 
 .threed_section_content_container__over {
     // background-color: rgba(yellow, .4);
+}
+
+.threed_section_content_container__gift {
+    background-color: rgba(green, .3);
 }
 
 .threed_section_content_container__responders {
@@ -48,7 +55,7 @@
 
 .threed_section_content_container__title {
     // font-family: 'Oswald';
-    margin-bottom: -.5rem;
+    margin-bottom: .1rem;
 }
 
 .threed_section_content_container__text {
