@@ -205,11 +205,161 @@ const HomePage = () => {
 
                     </Scroll>
 
+                    {/* html scrolls */}
+                    <Scrolls />
+
                 </ScrollControls>
             </Canvas>
         </div>
     )
 }
 
+
+const Scrolls = ()=> {
+    const scroll = useScroll()
+    const { width: w, height: h } = useThree((state) => state.viewport)
+    console.log("scroll ", scroll);
+    console.log("w ", w);
+    console.log("h ", h);
+    
+
+    return (
+        <Scroll html>
+
+            {/* covid came */}
+            <div
+                className='threed_section_container'
+                style={{
+                    top: '40vh',
+                }}
+            >
+                <div className='threed_section_content_container threed_section_content_container_start'>
+                    <h1 className='threed_section_content_container__title'> March 2020 </h1>
+                    <p className='threed_section_content_container__text'>
+                        Covid 19 was announced a pandemic and it changed our lives forever.
+                    </p>
+                </div>
+            </div>
+
+            {/* first responders */}
+            <div
+                className='threed_section_container'
+                style={{
+                    top: '190vh',
+                    // backgroundColor: 'lightgreen',
+                }}
+            >
+                <div className='threed_section_content_container threed_section_content_container__responders'>
+                    <h1 className='threed_section_content_container__title'> First Responders </h1>
+                    <p className='threed_section_content_container__text'>
+                        Amidst the uncertainty of the COVID-19 pandemic, you, the brave first responders, stood tall as beacons of hope, selflessly putting yourselves on the front lines to protect and serve your communities. We express our deepest gratitude for your unwavering commitment, sacrifice, and tireless efforts during the pandemic.
+                    </p>
+                </div>
+            </div>
+
+            {/* gift */}
+            <div
+                className='threed_section_container'
+                style={{
+                    top: '340vh',
+                    // backgroundColor: 'lightblue',
+                }}
+            >
+                <div className='threed_section_content_container threed_section_content_container__over'>
+                    <h1 className='threed_section_content_container__title'> May 2023 </h1>
+                    <p className='threed_section_content_container__text'>
+                        We got our gift, WHO announced that COVID was not a pandemic anymore. Now we can breath.
+                    </p>
+                </div>
+            </div>
+
+            {/* tribute */}
+            <div
+                className='threed_section_container'
+                style={{
+                    top: '520vh',
+                    // backgroundColor: 'lightblue',
+                }}
+            >
+                <div className='threed_section_content_container threed_section_content_container__tribute'>
+                    <h1 className='threed_section_content_container__title'>
+                        And To Those We Lost
+                    </h1>
+                    <p className='threed_section_content_container__text'>
+                        As we say our farewells, let's remember the lives that we lost. Each name etched in our memories represents a story of love, of laughter, of dreams, and of aspirations. They were our neighbors, our friends, our family members, and our fellow human beings. Their absence leaves an irreplaceable void in our lives, and their memories will forever be cherished.
+                    </p>
+                </div>
+            </div>
+            
+
+            {/* survivors */}
+            <div
+                className='threed_section_container'
+                style={{
+                    top: '760vh',
+                    // backgroundColor: 'lightblue',
+                }}
+            >
+                <div className='threed_section_content_container threed_section_content_container__tribute'>
+                    <h1 className='threed_section_content_container__title'>
+                        And To Those Who Survived
+                    </h1>
+                    <p className='threed_section_content_container__text'>
+                        Whether you are a long hauler, or otherwise, life is delicate. Make the difference you can now, be kind and stay positive.
+                    </p>
+                </div>
+            </div>
+
+        </Scroll>
+    )
+
+    return (
+        <Scroll html>
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '40vh',
+                    left: '0',
+                    backgroundColor: 'red',
+                    width: '100%',
+                }}
+            >
+                Covid
+            </div>
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '200vh',
+                    left: '40vw',
+                }}
+            >
+                Masks
+            </div>
+            <div
+                style={{
+                    position: 'absolute',
+                    top: '360vh',
+                    left: '40vw',
+                }}
+            >
+                Gift
+            </div>
+        </Scroll>
+    )
+
+    return (
+        <Scroll>
+            <Html center position-z={0}>
+                <h1> Covid </h1>
+            </Html>
+            <Html center position-z={-4}>
+                <h1> Masks </h1>
+            </Html>
+            <Html center position-z={-8}>
+                <h1> Gift </h1>
+            </Html>
+        </Scroll>
+    )
+}
 
 export default HomePage
