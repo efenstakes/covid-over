@@ -170,16 +170,16 @@ const HomePage = () => {
                                     <meshBasicMaterial color="#F2ACB9" />
                                 </Text>
                             </group>
-                            <group position-z={-3}>
+                            <group position-z={-3} scale={2}>
                                 <Float floatIntensity={1}>
                                     <HeartModel />
                                 </Float>
                             </group>
                             {
-                                iNames.map((name)=> {
+                                iNames.map((name, index)=> {
 
                                     return (
-                                        <Float floatIntensity={.5}>
+                                        <Float key={index} floatIntensity={.5}>
                                             <group
                                                 position={[
                                                     // Math.floor(Math.random() * 13) * Math.random() > .5 ? -1 : 1,
@@ -271,7 +271,9 @@ const Scrolls = ()=> {
                 }}
             >
                 <div className='threed_section_content_container threed_section_content_container__responders'>
-                    <h1 className='threed_section_content_container__title'> First Responders </h1>
+                    <h1 className='threed_section_content_container__title'>
+                        First Responders
+                    </h1>
                     <p className='threed_section_content_container__text'>
                         Amidst the uncertainty of the COVID-19 pandemic, you, the brave first responders, stood tall as beacons of hope, selflessly putting yourselves on the front lines to protect and serve your communities. We express our deepest gratitude for your unwavering commitment, sacrifice, and tireless efforts during the pandemic.
                     </p>
@@ -307,7 +309,7 @@ const Scrolls = ()=> {
                         And To Those We Lost
                     </h1>
                     <p className='threed_section_content_container__text'>
-                        As we say our farewells, let's remember the lives that we lost. Each name etched in our memories represents a story of love, of laughter, of dreams, and of aspirations. They were our neighbors, our friends, our family members, and our fellow human beings. Their absence leaves an irreplaceable void in our lives, and their memories will forever be cherished.
+                        As we say our farewells, let&apos;s remember the lives that we lost. Each name etched in our memories represents a story of love, of laughter, of dreams, and of aspirations. They were our neighbors, our friends, our family members, and our fellow human beings. Their absence leaves an irreplaceable void in our lives, and their memories will forever be cherished.
                     </p>
                 </div>
             </div>
