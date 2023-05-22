@@ -1,7 +1,11 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Inter, Mulish, Raleway, Oswald } from 'next/font/google'
+import clsx from 'clsx'
 
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
+const oswald = Oswald({ subsets: ['latin'] })
+const raleway = Raleway({ subsets: ['latin'] })
+const mulish = Mulish({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      {/* <body className={oswald.className}>{children}</body> */}
+      <body className={clsx([raleway.className, oswald.className, mulish.className])}>{children}</body>
     </html>
   )
 }
