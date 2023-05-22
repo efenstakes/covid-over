@@ -1,0 +1,41 @@
+
+.appbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    // width: 100vw;
+    padding: 1.5rem 16px;
+
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 20;
+
+    background: linear-gradient(
+        rgba(white, .8),
+        transparent
+    );
+
+    backdrop-filter: blur(10px);
+
+    @media screen and (min-width: 768px) {
+        padding-left: 10vw;
+        padding-right: 10vw;
+    }
+}
+
+.appbar__text {
+    max-height: 20px;
+}
+
+.appbar__title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.appbar__bytext {
+    font-style: italic;
+}
