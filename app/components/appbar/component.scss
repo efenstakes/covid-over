@@ -27,13 +27,32 @@
     }
 }
 
+
+.appbar__logo_container {
+    display: flex;
+    align-items: center;
+}
+
+.appbar__logo_image {
+    width: 56px;
+    height: 56px;
+    margin-right: .5rem;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
 .appbar__text {
+    font-weight: bold;
     max-height: 20px;
 }
 
 .appbar__title {
-    font-weight: bold;
     font-size: 1.2rem;
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: inline-block;
+    }
 }
 
 .appbar__bytext {
