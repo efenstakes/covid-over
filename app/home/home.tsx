@@ -63,14 +63,15 @@ const HomePage = () => {
         let iNames = []
 
         for (let currentCount = 0; currentCount < num; currentCount++) {
-            iNames.push(names[generateRandomFloatInRange(0, names.length)])
+            iNames.push(names[Math.floor(generateRandomFloatInRange(0, names.length))])
         }
 
         return iNames
     }
 
     const iNames = useMemo(()=> getNames(80), [])
-
+    // console.log("names ", names)
+    // console.log("iNames ", iNames)
     console.log("isMobile ", isMobile)
     return (
         <div className='page'>
@@ -98,7 +99,7 @@ const HomePage = () => {
                                 <Section position={-4}>
                                     <group position-z={-3} position-y={isMobile ? 6 : 5}>
                                         <Text
-                                            font="/fonts/Rubik Light_Regular.json"
+                                            font="/fonts/Rubik_Light_Regular.json"
                                             fontSize={isMobile ? 2.5 : 8}
                                         >
                                             An Era
@@ -114,7 +115,7 @@ const HomePage = () => {
                                 <Section position={-15}>
                                     <group position-z={-3} position-y={3}>
                                         <Text
-                                            font="/fonts/Rubik Light_Regular.json"
+                                            font="/fonts/Rubik_Light_Regular.json"
                                             fontSize={isMobile ? 3.2 : 8}
                                         >
                                             Hope
@@ -129,7 +130,7 @@ const HomePage = () => {
                                 <Section position={-24}>
                                     <group position-z={-6} position-y={isMobile ? 0 : -2}>
                                         <Text
-                                            font="/fonts/Rubik Light_Regular.json"
+                                            font="/fonts/Rubik_Light_Regular.json"
                                             fontSize={isMobile ? 4 : 11}
                                         >
                                             A Gift
@@ -168,7 +169,7 @@ const HomePage = () => {
                                 <Section position={-40}>
                                     <group position-z={-4} position-y={isMobile ? 3 : 1}>
                                         <Text
-                                            font="/fonts/Rubik Light_Regular.json"
+                                            font="/fonts/Rubik_Light_Regular.json"
                                             fontSize={isMobile ? 2.6 : 8}
                                         >
                                             Tribute
@@ -196,7 +197,7 @@ const HomePage = () => {
                                                         ]}
                                                     >
                                                         <Text
-                                                            font="/fonts/Rubik Light_Regular.json"
+                                                            font="/fonts/Rubik_Light_Regular.json"
                                                             fontSize={.4}
                                                         >
                                                             {name}.
@@ -217,7 +218,7 @@ const HomePage = () => {
                                 <Section position={-60}>
                                     <group position-z={-3} position-y={isMobile ? 7 : 5}>
                                         <Text
-                                            font="/fonts/Rubik Light_Regular.json"
+                                            font="/fonts/Rubik_Light_Regular.json"
                                             fontSize={isMobile ? 2 : 6}
                                         >
                                             Gratitude
